@@ -23,9 +23,9 @@ Copy/paste to :
 You may need to allow the script to run on your system. To do this: 
 
 1. Run powershell as administrator, then run this powershell call : 
-'''
+```
 Set-ExecutionPolicy RemoteSigned
-'''
+```
  2. Type "A" then hit enter and re-run Install-Fix.ps1
 
 &#x200B;
