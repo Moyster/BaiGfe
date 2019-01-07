@@ -3,8 +3,8 @@ $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Pri
 
 # We need admin rights to modify the Nvidia installation successfully
 If (-Not ($currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) ) {
-    "This script must be run as Administrator"
-    Exit-PSSession
+    # If no admin rights found, elevate powershell and run this script from the elevated shell
+    Start-Process powershell -ArgumentList $("-file" + $PSScriptRoot + "\Install-Fix.ps1") -Verb runAs
 }
 
 # Check if GFX Experience is installed from 
@@ -22,7 +22,7 @@ function Is-Installed( $program ) {
 
 If (-Not (Is-Installed("GeForce Experience")) ) {
     "GeForce Experience must be installed to run this script"
-    Exit-PSSession
+    Exit
 }
 
 # Get root directory path 
