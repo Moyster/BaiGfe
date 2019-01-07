@@ -28,19 +28,30 @@ If (-Not (Is-Installed("GeForce Experience")) ) {
 # Get root directory path 
 $gfxPath = (Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\NVIDIA Corporation\Global\GFExperience" -Name "FullPath").Replace("NVIDIA GeForce Experience.exe","") + "www\"
 
-# Copy the app.js file to the powershell script directory as a backup
-Copy-Item $($gfxPath + "app.js") -Destination $($PSScriptRoot + "\backup_app.js")
+# Get file hashes for the two app.js files to compare them
+$oldHash = Get-FileHash -Path $($gfxPath + "app.js") -Algorithm "MD5"
+$newHash = Get-FileHash -Path $($PSScriptRoot + "\app.js") -Algorithm "MD5"
 
-# Kill GFX if running
-Stop-Process -Name "NVIDIA GeForce Experience" -Force
+# If file in gfx dir is the same as the pending installation, skip installation
+If ($oldHash.Hash -eq $newHash.Hash) {
+    "Skipping Installation, fixed file already installed"
+} else {
+    # Copy the app.js file to the powershell script directory as a backup
+    Copy-Item $($gfxPath + "app.js") -Destination $($PSScriptRoot + "\backup_app.js")
 
-# Get rid of backup if it exists
-Remove-Item -Path $($gfxPath + "app.js.bak")
+    # Kill GFX if running
+    Stop-Process -Name "NVIDIA GeForce Experience" -Force
 
-# backup js file within gfx directory
-Rename-Item -Path $($gfxPath + "app.js") -NewName "app.js.bak" -Force
+    # Get rid of in-directory backup if it exists
+    Remove-Item -Path $($gfxPath + "app.js.bak")
 
-# Copy new app.js file into directory
-Copy-Item $($PSScriptRoot + "\app.js") -Destination $gfxPath
+    # backup js file within gfx directory
+    Rename-Item -Path $($gfxPath + "app.js") -NewName "app.js.bak" -Force
 
-"Successfully Replaced"
+    # Copy new app.js file into directory
+    Copy-Item $($PSScriptRoot + "\app.js") -Destination $gfxPath
+
+    "Successfully Replaced"
+}
+
+
