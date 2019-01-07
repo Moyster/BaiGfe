@@ -16,11 +16,14 @@ Copy/paste to :
 
 # Auto-install easy fix :
 
-Right-click Install-Fix.ps1 and choose Run as Administrator
+**Right-click Install-Fix.ps1 and choose Run as Administrator**
+
 
 You may need to allow the script to run on your system. To do this: 
 
 1. Run powershell as administrator, then run this powershell call : 
+
+\-
 
     Set-ExecutionPolicy RemoteSigned
 
