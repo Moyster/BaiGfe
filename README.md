@@ -14,6 +14,20 @@ Copy/paste to :
 
 &#x200B;
 
+# Auto-install easy fix :
+
+Right-click Install-Fix.ps1 and choose Run as Administrator
+
+You may need to allow the script to run on your system. To do this: 
+
+1. Run powershell as administrator, then run this powershell call : 
+
+    Set-ExecutionPolicy RemoteSigned
+
+ 2. Type "A" then hit enter and re-run Install-Fix.ps1
+
+&#x200B;
+
 # Manual way :  
 NOTE: some of the code below might change (function letters), just compare with one of the previously uploaded app.js ;)  
 
