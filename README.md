@@ -49,14 +49,17 @@ use [http://jsbeautifier.org/](http://jsbeautifier.org/) on app.js found in :
 
     if (e.domains.list.indexOf(n) > -1) return y.handleLoggedIn(e), !0
 
-Now let's add some fake infos, find :  
+Now let's add some fake infos, find :
+  
+            }, y.isLeftPaneVisible = function() {
+                return !("choose" === y.nvActiveAuthView)
+            }
 
-                    return !("choose" === w.nvActiveAuthView && C)
-                }, b()
+And replace with this : 
 
-After "b()" add a new line and copy/paste this : 
-
-                y.handleLoggedIn({
+            }, y.isLeftPaneVisible = function() {
+                return !("choose" === y.nvActiveAuthView)
+            }, y.handleLoggedIn({
                     sessionToken: "dummySessionToken",
                     userToken: "dummyUserToken",
                     user: {
