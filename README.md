@@ -1,5 +1,5 @@
 # BaiGfe
-Remove Mandatory Login of Geforce Experience - [support: v3.14.x to v3.20.x(current)]
+Remove Mandatory Login of Geforce Experience - [support: v3.14.x to v3.21.x(current)]
 # How to Remove Mandatory Login  
 
 make a backup of every files you edit !
@@ -30,10 +30,14 @@ Set-ExecutionPolicy RemoteSigned
 
 &#x200B;
 
+It is also possible that you have to right click the script, go to Properties and check Unblock at the bottom.
+
+&#x200B;
+
 # Manual way :  
 NOTE: some of the code below might change (function letters), just compare with one of the previously uploaded app.js ;)  
 
-use [http://jsbeautifier.org/](http://jsbeautifier.org/) on app.js found in :  
+use [beautifier.io](https://beautifier.io/) on app.js found in :
 
     C:\Program Files\NVIDIA Corporation\NVIDIA GeForce Experience\www\
 
@@ -76,11 +80,11 @@ And replace with this :
 
 \-  find and replace
 
-    X.isShareSupported = !1, X.isShareButtonClicked = !1
+    J.isShareSupported = !1, J.isShareButtonClicked = !1
 
 by
 
-    X.isShareSupported = !0, X.isShareButtonClicked = !0
+    J.isShareSupported = !0, J.isShareButtonClicked = !0
 
 To make the shadowplay & share buttons show on the main GFE screen
 
